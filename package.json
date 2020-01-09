@@ -2,8 +2,9 @@
   "name": "cypress-awskinesis-reporter",
   "version": "1.0.0",
   "description": "a Cypress / Mocha test reporter for uploading results to an AWS Kinesis Firehose endpoint",
-  "main": "index.js",
+  "main": "./index.js",
   "directories": {
+    "lib": "src",
     "test": "test"
   },
   "scripts": {
