@@ -1,0 +1,39 @@
+{
+  "name": "cypress-awskinesis-reporter",
+  "version": "1.0.0",
+  "description": "a Cypress / Mocha test reporter for uploading results to an AWS Kinesis Firehose endpoint",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha ./test/*-spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bicarbon8/cypress-awskinesis-reporter.git"
+  },
+  "keywords": [
+    "cypress",
+    "mocha",
+    "reporter",
+    "aws",
+    "kinesis",
+    "firehose"
+  ],
+  "author": "Jason Holt Smith <bicarbon8@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bicarbon8/cypress-awskinesis-reporter/issues"
+  },
+  "homepage": "https://github.com/bicarbon8/cypress-awskinesis-reporter#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.0",
+    "sinon": "^8.0.4"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.600.0",
+    "chalk": "^3.0.0"
+  }
+}
