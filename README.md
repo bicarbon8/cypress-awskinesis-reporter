@@ -73,7 +73,7 @@ The results uploaded to AWS Kinesis Firehose will have the following format
 ```javascript
 {
     Created: "YYYY-MM-DD:HH:mm:ss.mmmZ",
-    TestId: "C123", // or null if none exists
+    TestId: C123, // or null if none exists
     TestStatus: 0, // 0=passed, 4=failed, 5=skipped
     DurationMs: 12334, // milliseconds
     TestStatusStr: "passed", // or "failed" or "skipped"
