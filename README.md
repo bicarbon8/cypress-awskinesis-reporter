@@ -4,7 +4,7 @@ a Mocha / Cypress test reporter module for uploading results to AWS Kinesis Fire
 # Install
 from your Cypress project, run the following command
 ```
-$ npm install cypress-awkkinesis-reporter --save-dev
+$ npm install cypress-awskinesis-reporter --save-dev
 ```
 
 # Usage
