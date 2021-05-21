@@ -14,7 +14,6 @@ Add the reporter to your `cypress.json`
 
 Ex: using config file based, AWS temporary IAM credentials
 ```json
-...
 "reporter": "cypress-awskinesis-reporter",
 "reporterOptions": {
     "kinesisfirehose_deliverystream": "your-stream-name",
@@ -61,26 +60,29 @@ it('Can authenticate C123C234 as a valid user', () => {...});
 ```
 
 # Reporter Options
-* `kinesisfirehose_deliverystream` - **REQUIRED** - the AWS Kinesis Firehose Delivery Stream name where messages will be sent
-* `kinesisfirehose_regionendpoint` - **REQUIRED** - the location where your AWS Kinesis Firehose endpoint is deployed in AWS. Valid values will look similar to `eu-west-1`, `us-west-2`, etc.
-* `aws_auth_type` - **REQUIRED** - the location from where the AWS Credentials should be retrieved. Valid values are `instance` (EC2 Instance Profile credentials), `config` (Cypress' reporterOptions in the `cypress.json` file), and `environment` (read the values from the environment variables)
-  * `aws_access_key_id` - if using a value of `config` for `aws_auth_type` you must also include this with a valid IAM Access Key ID
-  * `aws_secret_access_key` - if using a value of `config` for `aws_auth_type` you must also include this with a valid IAM Secret Access Key
-  * `aws_session_token` - if using a value of `config` for `aws_auth_type` and using Temporary IAM Credentials, you must also include a value for this
+- `kinesisfirehose_deliverystream` - **REQUIRED** - the AWS Kinesis Firehose Delivery Stream name where messages will be sent
+- `kinesisfirehose_regionendpoint` - **REQUIRED** - the location where your AWS Kinesis Firehose endpoint is deployed in AWS. Valid values will look similar to `eu-west-1`, `us-west-2`, etc.
+- `aws_auth_type` - **REQUIRED** - the location from where the AWS Credentials should be retrieved. Valid values are `instance` (EC2 Instance Profile credentials), `config` (Cypress' reporterOptions in the `cypress.json` file), and `environment` (read the values from the environment variables)
+  - `aws_access_key_id` - if using a value of `config` for `aws_auth_type` you must also include this with a valid IAM Access Key ID
+  - `aws_secret_access_key` - if using a value of `config` for `aws_auth_type` you must also include this with a valid IAM Secret Access Key
+  - `aws_session_token` - if using a value of `config` for `aws_auth_type` and using Temporary IAM Credentials, you must also include a value for this
 
 # Kinesis Record Data Format
 The results uploaded to AWS Kinesis Firehose will have the following format
 ```javascript
 {
     Created: "YYYY-MM-DD:HH:mm:ss.mmmZ",
-    TestId: C123, // or null if none exists
+    TestId: 123, // or undefined if none exists
     TestStatus: 0, // 0=passed, 4=failed, 5=skipped
     DurationMs: 12334, // milliseconds
     TestStatusStr: "passed", // or "failed" or "skipped"
     TestName: "C123 C234 Can authenticate as a valid user",
     TestFullName: "Authentication Standard User C123 C234 Can authenticate as a valid user",
-    Source: "cypress-awskinesis-reporter",
-    Version: "1.0.0"
+    BuildName: "Some Project name - Some plan name - Some job name", // or undefined if none exists
+    BuildNumber: 987, // or undefined if none exists
+    Source: "cypress-awskinesis-reporter", // name of this reporter
+    Version: "2.0.0", // version of this reporter
+    ErrorMessage: "some error string" // or undefined if none exists
 }
 ```
 **NOTE:** Tests referencing multiple Case ID's will upload 1 record for each Case ID

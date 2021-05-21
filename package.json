@@ -1,6 +1,6 @@
 {
   "name": "cypress-awskinesis-reporter",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "a Cypress / Mocha test reporter for uploading results to an AWS Kinesis Firehose endpoint",
   "main": "./index.js",
   "directories": {
@@ -29,12 +29,11 @@
   },
   "homepage": "https://github.com/bicarbon8/cypress-awskinesis-reporter#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "sinon": "^8.0.4"
+    "chai": "^4.3.4"
   },
   "dependencies": {
-    "mocha": "^7.0.0",
-    "aws-sdk": "^2.600.0",
-    "chalk": "^3.0.0"
+    "aws-sdk": "^2.911.0",
+    "chalk": "^3.0.0",
+    "mocha": "^7.2.0"
   }
 }

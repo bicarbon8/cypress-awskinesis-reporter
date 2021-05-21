@@ -1,13 +1,12 @@
 const utils = require('./utils');
-const AwsAuth = require('./aws-auth');
 const aws = require('aws-sdk');
 
-class AwsKinesisClient {
+class AwsKinesisApi {
     constructor(options) {
-        this.options = options;
-        this.client = new aws.Firehose({
-            region: this.options.kinesisfirehose_regionendpoint,
-            credentials: AwsAuth.get(this.options)
+        this._options = options;
+        this._client = this._options?._client || new aws.Firehose({
+            region: this._options.kinesisfirehose_regionendpoint,
+            credentials: utils.getCredentials(this._options)
         });
     }
 
@@ -18,10 +17,10 @@ class AwsKinesisClient {
                 Record: {
                     Data: JSON.stringify(results[i])
                 },
-                DeliveryStreamName: this.options['kinesisfirehose_deliverystream']
+                DeliveryStreamName: this._options['kinesisfirehose_deliverystream']
             };
             await new Promise((resolve, reject) => {
-                this.client.putRecord(record, (err, data) => {
+                this._client.putRecord(record, (err, data) => {
                     if (err) {
                         utils.warn(`unable to publish record '${JSON.stringify(record)}' to AWS Kinesis due to: ${err}`);
                     } else {
@@ -35,4 +34,4 @@ class AwsKinesisClient {
     }
 }
 
-module.exports = AwsKinesisClient;
+module.exports = AwsKinesisApi;

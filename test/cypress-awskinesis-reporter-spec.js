@@ -16,7 +16,7 @@ describe('CypressAwsKinesisReporter', () => {
             reporterOptions: repOpts
         };
         var reporter = new CypressAwsKinesisReporter(runner, options);
-        expect(reporter).not.to.be.null;
+        expect(reporter).to.exist;
     });
 
     it('throws if missing deliverystream', () => {
@@ -86,24 +86,24 @@ describe('CypressAwsKinesisReporter', () => {
             reporterOptions: repOpts
         };
         var reporter = new CypressAwsKinesisReporter(runner, options);
-        expect(reporter).not.to.be.null;
+        expect(reporter).to.exist;
     });
 });
 
-function FakeRunner() {
-    this.stats;
-    this.started;
-    this.suite;
-    this.total;
-    this.failures;
+class FakeRunner {
+    stats;
+    started;
+    suite;
+    total;
+    failures;
 
-    this.grep = (re, invert) => {}
-    this.grepTotal = (suite) => {};
-    this.globals = (arr) => {};
-    this.abort = () => {};
-    this.run = (fn) => {};
+    grep = (re, invert) => {}
+    grepTotal = (suite) => {};
+    globals = (arr) => {};
+    abort = () => {};
+    run = (fn) => {};
 
-    this.on = (event, action) => {
+    on = (event, action) => {
         TestStore.store(event, action);
         return this;
     }
